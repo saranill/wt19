@@ -1,0 +1,19 @@
+body{
+    font-family: Verdana;
+}
+header{
+    background-color: #AFAFAF;
+    color: #FF5F00;
+    text-align: center;
+}
+th{
+    color: white;
+    background-color: #76B900;
+}
+table{
+    border: 1px solid #000000;
+
+}
+td{
+    border: 1px solid #000000;
+}
