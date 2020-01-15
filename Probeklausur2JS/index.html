@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probeklausur 2 - JavaScript</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
+    <style>
+        body {
+            font-family: Verdana;
+        }
+
+        header {
+            background-color:lightgray;
+            color:darkgray;
+            width:100%;
+            height:80px;
+            font-size:1.2em;
+            font-weight:bold;
+            text-align:center;
+        }
+
+        footer {
+            position:absolute;
+            bottom:0px;
+            background-color:lightgray;
+            width:100%;
+            height:60px;
+            text-align:center;
+            padding-top:10px;
+        }
+
+        footer a:link, footer a:hover, footer a:visited {
+            text-decoration: none;
+            color: black;
+        }
+        .message{
+            text-align: center;
+            margin:10px;
+            font-size: large;
+            color:darkred;
+        }
+
+        .karte{
+            background-color:darkgray;
+            height:100px;
+            text-align:center;
+            line-height:100px;
+            color:green;
+            margin:5px;
+            box-shadow: 5px 10px #888888;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container-fluid">
+
+<header>
+    <h1>Probeklausur 2 - JavaScript</h1>
+</header>
+
+    <div class="message" id="message">Wählen Sie die Anzahl der Spalten (1-4) und die Anzahl der Zeilen (4-10) aus
+    </div>
+
+    <div id="formcontainer" class="container-fluid">
+        <form id="form" role="form" class="form-horizontal" method="GET">
+
+            <div class="form-group row">
+                <label class="control-label col-sm-6 col-md-4" for="spaltenInput">Anzahl Spalten (1-4):</label>
+                <div class="col-sm-6 col-md-8">
+                    <input class="form-control" type="number" id="spaltenInput" name="anzahlSpalten" placeholder="(1-4)" onchange="validate()">
+                    <div id="feedbackSpalten" class="invalid-feedback">
+                        Anzahl der Spalten muss zwischen 1 und 4 (inkl.) sein!
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-6 col-md-4" for="spaltenInput">Anzahl Zeilen (4-10):</label>
+                <div class="col-sm-6 col-md-8">
+                    <input class="form-control" type="number" id="zeilenInput"  name="anzahlZeilen" placeholder="(4-10)" onchange="validate()">
+                    <div id="feedbackZeilen" class="invalid-feedback">
+                        Anzahl der Zeilen muss zwischen 4 und 10 (inkl.) sein!
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+    <footer id="footer">
+        <a href="studi.f4.htw-berlin.de/~freiheit/index.php"> Jörn Freiheit </a>
+    </footer>
+
+</div> <!-- container-fluid -->
+<script>
+    function validate()
+    {
+        let inputFieldCol = document.getElementById('spaltenInput');
+        let inputCol = inputFieldCol.value;
+        let colOk = false;
+
+        if(inputCol < 1 || inputCol > 4)
+        {
+            inputFieldCol.classList.add('is-invalid');
+            inputFieldCol.focus();
+            inputFieldCol.select();
+            document.getElementById('message').innerHTML = 'Korrigieren Sie Ihre Eingabe!';
+            document.getElementById('message').style.color = 'red';
+        }
+        else if(inputFieldCol.classList.contains('is-invalid'))
+        {
+            inputFieldCol.classList.remove('is-invalid');
+            inputFieldCol.classList.add('is-valid');
+            inputFieldCol.setAttribute("readonly", 'readonly');
+            colOk = true;
+        }
+        else
+        {
+            inputFieldCol.classList.add('is-valid');
+            inputFieldCol.setAttribute("readonly", 'readonly');
+            colOk = true;
+        }
+
+        let inputFieldRow = document.getElementById('zeilenInput');
+        let inputRow = inputFieldRow.value;
+        let rowOk = false;
+
+        if(inputRow < 4 || inputRow > 10)
+        {
+            inputFieldRow.classList.add('is-invalid');
+            inputFieldRow.focus();
+            inputFieldRow.select();
+            document.getElementById('message').innerHTML = 'Korrigieren Sie Ihre Eingabe!';
+            document.getElementById('message').style.color = 'red';
+        }
+        else if(inputFieldRow.classList.contains('is-invalid'))
+        {
+            inputFieldRow.classList.remove('is-invalid');
+            inputFieldRow.classList.add('is-valid');
+            inputFieldRow.setAttribute("readonly", 'readonly');
+            rowOk = true;
+        }
+        else
+        {
+            inputFieldRow.classList.add('is-valid');
+            inputFieldRow.setAttribute("readonly", 'readonly');
+            rowOk = true;
+        }
+
+        if(rowOk && colOk) {
+            createMatrix(inputCol, inputRow);
+        }
+    }
+
+    function createMatrix(col, row)
+    {
+        document.getElementById('message').innerHTML = '';
+        let mainDiv = document.getElementById('formcontainer');
+        //console.log(mainDiv.firstChild.nodeName);
+        //mainDiv.firstChild.remove();
+        let formDiv = document.getElementById('form');
+        //mainDiv.removeChild(formDiv);
+        formDiv.remove();
+
+        let rowDiv = document.createElement('div');
+        rowDiv.classList.add('row');
+        let colDiv = document.createElement('div');
+        colDiv.classList.add('karte', 'col');
+        let wDiv = document.createElement('div');
+        wDiv.classList.add('w-100');
+
+        for(let i=0; i<row; i++)
+        {
+            for(let j=0; j<col; j++)
+            {
+                let _colDiv = colDiv.cloneNode(true);
+                _colDiv.innerHTML = i.toString();
+                rowDiv.appendChild(_colDiv);
+            }
+            let _wDiv = wDiv.cloneNode(true);
+            rowDiv.appendChild(_wDiv);
+        }
+        mainDiv.appendChild(rowDiv);
+
+    }
+</script>
+</body>
+
+</html>

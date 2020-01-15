@@ -1,11 +1,53 @@
-<table>
-				<tr>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset ="UTF-8">
+		<title>Aufgabe2</title>
+        <link href="styles/mystyles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+        .table-hover tbody tr:hover { background-color: aquamarine;}
+        </style>
+     </head>
+     <body>
+		 <header>
+        <h1>Teilnehmer_innen WebTech</h1>
+		<img src="../Images/fiw.jpg" style="width: 53px; height:48px"/>
+	</header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <ul class="navbar-nav mr-auto">
+            <li class ="nav-item">
+                <a class="nav-link" href="#">ALLE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#a">A-G</a>
+            </li>
+            <li class="nav-item"> 
+                <a class="nav-link" href="#h">H-L</a>
+            </li>
+            <li class="nav-item"> 
+                <a class="nav-link" href="#m">M-R</a>
+            </li>
+            <li class="nav-item"> 
+                <a class="nav-link" href="#s">S-Z</a>
+            </li>
+            <li class="nav-item"> 
+                <a class="nav-link" href="#">Startseite</a>
+            </li>
+        </ul>
+        </nav>
+    
+    <section>
+        <h1>ALLE TEILNEHMER_INNEN</h1>
+        <table class="table table-hover table-striped">
+				<tr id="#">
 					<th>Vorname</th>
 					<th>Nachname</th>
 					<th>E-Mail-Adresse</th>
 					<th>IP-Adresse</th>
 				</tr>
-				<tr>
+				<tr id="a"> 
 					<td>Adam</td>
 					<td>Anderson</td>
 					<td>aanderson8@google.fr</td>
@@ -125,7 +167,7 @@
 					<td>vgrahamk@aol.com</td>
 					<td>165.219.171.1</td>
 				</tr>
-				<tr>
+				<tr id="h">
 					<td>Steven</td>
 					<td>Hamilton</td>
 					<td>shamiltonu@state.tx.us</td>
@@ -161,7 +203,7 @@
 					<td>akim4@odnoklassniki.ru</td>
 					<td>168.244.191.78</td>
 				</tr>
-				<tr>
+				<tr id="m">
 					<td>Jennifer</td>
 					<td>Marshall</td>
 					<td>jmarshallt@gnu.org</td>
@@ -251,7 +293,7 @@
 					<td>kroseg@pinterest.com</td>
 					<td>222.172.140.56</td>
 				</tr>
-				<tr>
+				<tr id="s">
 					<td>Steve</td>
 					<td>Sanders</td>
 					<td>ssanders1b@wikispaces.com</td>
@@ -306,3 +348,11 @@
 					<td>154.87.204.51</td>
 				</tr>
 			</table>
+
+
+	</section>
+	<footer>Sara Nill</footer>
+    </body>
+
+</html>
+    
