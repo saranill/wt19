@@ -98,8 +98,8 @@
 
         for(let i=0; i< staedte.length; i++)
         {
-            if(staedte[i].stadt.substring(0, input.length).toLocaleLowerCase() == input.toLocaleLowerCase()) {
-            
+            if(staedte[i].stadt.substring(0, input.length).toLocaleLowerCase() == input.toLocaleLowerCase()) 
+            {
            _tr = tr.cloneNode(false); //Zeile kann geklont oder neu erstellt werden
            
            _td = td.cloneNode(false); 
@@ -139,8 +139,9 @@
 
 
            tbody.appendChild(_tr);
-        }
-    }
+			}
+        
+    	}
 
 
 		table.appendChild(thead);

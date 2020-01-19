@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Aufgabe 8</title>
+</head>
+<body onload='createTable(); document.getElementById("filter").focus();'>
+    <div class="container">
+        <h1>Formular</h1>
+        <div class="form-horizontal" role="form">
+            <div class="form-group row">
+                <label for="filter" class="col-2">Filter:</label>
+                <div class="col-10">
+                    <input class="form-control" id="filter" type="text" placeholder="Stadt oder Gruendungsjahr" onchange="createTable()">
+                </div>
+            </div>
+        </div>
+
+        <div id="table"></div>
+        <div id="unten"></div>
+    </div>
+
+<script>
+    function createTable()
+    {
+        var staedte = [
+			{ "jahr" : 1237, "stadt" : "Berlin", "link" : "http://de.wikipedia.org/wiki/Berlin", "bild" : "images/berlin.png"},
+			{ "jahr" : 1624, "stadt" : "New York", "link" : "http://de.wikipedia.org/wiki/New_York_City", "bild" : "images/newyork.png"},
+			{ "jahr" : 1252, "stadt" : "Stockholm", "link" : "http://de.wikipedia.org/wiki/Stockholm", "bild" : "images/stockholm.png"},
+			{ "jahr" : 852, "stadt" : "Madrid", "link" : "http://de.wikipedia.org/wiki/Madrid", "bild" : "images/madrid.png"},
+			{ "jahr" : 1827, "stadt" : "Bremerhaven", "link" : "http://de.wikipedia.org/wiki/Bremerhaven", "bild" : "images/bremerhaven.png"},
+			{ "jahr" : 150, "stadt" : "Bremen", "link" : "http://de.wikipedia.org/wiki/Bremen", "bild" : "images/bremen.png"},
+			{ "jahr" : 1202, "stadt" : "Bernau", "link" : "http://de.wikipedia.org/wiki/Bernau_bei_Berlin", "bild" : "images/bernau.png"},
+			{ "jahr" : 929, "stadt" : "Brandenburg", "link" : "http://de.wikipedia.org/wiki/Brandenburg_an_der_Havel", "bild" : "images/brandenburg.png"},
+			{ "jahr" : 805, "stadt" : "Magdeburg", "link" : "http://de.wikipedia.org/wiki/Magdeburg", "bild" : "images/magdeburg.png"},
+			{ "jahr" : 1222, "stadt" : "Marburg", "link" : "http://de.wikipedia.org/wiki/Marburg", "bild" : "images/marburg.png"},
+			{ "jahr" : 766, "stadt" : "Mannheim", "link" : "http://de.wikipedia.org/wiki/Mannheim", "bild" : "images/mannheim.png"},
+			{ "jahr" : 782, "stadt" : "Mainz", "link" : "http://de.wikipedia.org/wiki/Mainz", "bild" : "images/mainz.png"}
+		];
+
+        let input = document.getElementById('filter').value;
+        console.log(input);
+        let tableDiv = document.getElementById('table');
+		if(tableDiv.firstChild) tableDiv.removeChild(tableDiv.firstChild); 
+        //wenn das nicht ist, wird immer wieder die Tabelle angehängt
+        
+        let table = document.createElement('TABLE');
+        table.setAttribute('class', 'table table-striped');
+        
+        // Header
+        let thead = document.createElement('THEAD');
+        let tr = document.createElement('TR');
+
+        let _th = document.createElement('TH');
+        let _text = document.createTextNode('Nr');
+        _th.appendChild(_text);
+        tr.appendChild(_th);
+
+        _th = document.createElement('TH');
+         _text = document.createTextNode('Jahr');
+        _th.appendChild(_text);
+        tr.appendChild(_th);
+
+         _th = document.createElement('TH');
+        _text = document.createTextNode('Stadt');
+        _th.appendChild(_text);
+        tr.appendChild(_th);
+
+         _th = document.createElement('TH');
+         _text = document.createTextNode('Link');
+        _th.appendChild(_text);
+        tr.appendChild(_th);
+
+         _th = document.createElement('TH');
+        _text = document.createTextNode('Bild');
+        _th.appendChild(_text);
+        tr.appendChild(_th);
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
+        // Body
+        let td = document.createElement('TD');
+        let tbody = document.createElement('TBODY');
+
+        for(let i=0; i < staedte.length; i++)
+        {
+            if(staedte[i].stadt.substring(0, input.length).toLocaleLowerCase() == input.toLocaleLowerCase()
+            || staedte[i].jahr.toString().substring(0, input.length) == input)
+            {
+            tr = document.createElement('TR');
+            td = document.createElement('TD');
+            text = document.createTextNode(i+1);
+            td.appendChild(text);
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            text = document.createTextNode(staedte[i].jahr);
+            td.appendChild(text);
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            text = document.createTextNode(staedte[i].stadt);
+            td.appendChild(text);
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            let a = document.createElement('a');
+            a.classList.add('btn', 'btn-small', 'btn-success');
+            a.innerHTML = 'Info';
+            a.setAttribute('target', '_blank');
+            a.href = staedte[i].link;
+            td.appendChild(a);
+            tr.appendChild(td);
+            
+           
+
+            td = document.createElement('TD');
+            let img = document.createElement('IMG');
+            img.src = staedte[i].bild;
+            img.style.height = '50px';
+            img.addEventListener('click', clonePicture);
+            td.appendChild(img);
+            tr.appendChild(td);
+
+            tbody.appendChild(tr);
+            }
+
+        }   
+        
+        table.appendChild(tbody);
+        let container = document.getElementById('table');
+        container.appendChild(table);
+        
+    }
+
+    function clonePicture(event)
+    {
+        let divPicture = document.getElementById('unten');
+        let picture = event.currentTarget;
+        let _clonePic = picture.cloneNode(false); //Clone erstellen, sonst verschwindet das Bild aus der Tabelle
+        divPicture.appendChild(_clonePic);
+
+    }
+</script>
+</body>
+</html>

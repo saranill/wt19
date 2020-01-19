@@ -90,7 +90,7 @@
             </div>
         </main>
     </div>
-    <footer><a href="http://webtech.f4.htw-berlin.de/~freiheit/WT18/Aufgabe8/aufgabe8.php">Sara Nill</a></footer>
+    <footer><a href="http://webtech.f4.htw-berlin.de/~s0562207/wt19">Sara Nill</a></footer>
 </div>
 </body>
 <script>
@@ -99,7 +99,7 @@
     {
         var urlParams = new URLSearchParams(window.location.search); 
 
-        if(!urlParams.has('name')) //wenn es noch keinen Namen gibt, also nicht aus der Liste
+        if(!urlParams.has('name')) //wenn KEIN Name an der URL hängt
         {
             var player = [{"name": "Susan", "moves": 12},
                 {"name": "Catherine", "moves": 13},
@@ -152,7 +152,7 @@
         {
             let a = document.createElement('a');
             a.classList.add('list-group-item', 'list-group-item-action');
-            a.href = 'indexh.html?name' + player[i].name;
+            a.href = 'indexh.html?name=' + player[i].name;
             a.innerText = player[i].name + ' (' + player[i].moves + ')';
             playerList.appendChild(a);
         }

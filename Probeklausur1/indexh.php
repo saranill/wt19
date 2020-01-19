@@ -134,7 +134,7 @@
 
         </script>
 <footer>
-   <a id="footer" href="webtech.f4.htw-berlin.de/~s0562207/WebTechRepository/index.html">Sara Nill</a> 
+   <a id="footer" href="http://webtech.f4.htw-berlin.de/~s0562207/wt19">Sara Nill</a> 
 </footer>
 </div>
 </body>
