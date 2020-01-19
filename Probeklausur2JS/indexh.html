@@ -46,7 +46,7 @@
         </header>
         <div class="message" id="message">Wählen Sie die Anzahl der Spalten (1-4) und die Anzahl der Bilder (4-10) aus</div>
         <div id="formcontainer" class="container-fluid">
-            <form id="form" role="form" class="form-horizontal" method="get">
+            <form id="form" class="form-horizontal" method="get">
                 <div class="form-group row">
                     <label class="control-label col-sm-6 col-md-4">Anzahl Spalten (1-4):</label>
                     <div class="col-sm-6 col-md-8">
@@ -77,18 +77,9 @@
             if(inputCol < 1 || inputCol > 4)
             {
                 inputFieldCol.classList.add("is-invalid");
-                inputFieldCol.focus();
-                inputFieldCol.select();
                 document.getElementById('message').innerHTML = 'Korrigieren sie ihre Eingabe!';
                 
             }
-            // else if (inputFieldCol.classList.contains('is-invalid'))
-            // {
-                
-            //     inputFieldCol.classList.add('is-valid');
-            //     inputFieldCol.setAttribute("readonly", 'readonly');
-            //     colOk = true;
-            // }
             else
             {
                 inputFieldCol.classList.remove('is-invalid');
@@ -104,17 +95,8 @@
             if (inputRow < 4 || inputRow > 10)
             {
                 inputFieldRow.classList.add('is-invalid');
-                inputFieldRow.focus();
-                inputFieldRow.select();
                 document.getElementById('message').innerHTML = 'Korrigieren Sie ihre Eingabe!'
             }
-            // else if(inputFieldRow.classList.contains('is-invalid'))
-            // {
-                
-            //     inputFieldRow.classList.add('is-valid');
-            //     inputFieldRow.setAttribute("readonly", 'readonly');
-            //     rowOk = true;
-            // }
             else
             {   
                 inputFieldRow.classList.remove('is-invalid');
@@ -137,9 +119,9 @@
             formDiv.remove();
 
             let rowDiv = document.createElement('div');
-            rowDiv.classList.add('karte','row');
+            rowDiv.classList.add('row');
             let colDiv = document.createElement('div');
-            colDiv.classList.add('col');
+            colDiv.classList.add('karte','col');
             let wDiv = document.createElement('div');
             wDiv.classList.add('w-100');
 
@@ -149,6 +131,7 @@
                 {
                     let _colDiv = colDiv.cloneNode(true);
                     _colDiv.innerHTML = i.toString();
+                    _colDiv.setAttribute('onclick', 'changeColor(event);')
                     rowDiv.appendChild(_colDiv);
                 }
 
@@ -157,6 +140,30 @@
             }
             mainDiv.appendChild(rowDiv);
         }
+
+        function changeColor(event)
+        {
+            var karte = event.target;
+
+            if(karte.style.backgroundColor == 'red')
+            {
+                karte.style.backgroundColor = 'darkgrey';
+                karte.style.color = 'green';
+            }
+            else
+            {
+                karte.style.backgroundColor = 'red';
+                karte.style.color = 'white';
+            }
+
+        }
+        // var karten = document.getElementsByClassName('karte');
+
+        // for (var i=0; i < karten.length; i++)
+        // {
+        //     var karte = karten[i];
+        //     karte.onclick = changeColor();
+        // }    
     </script>
     
 </body>
